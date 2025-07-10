@@ -4,6 +4,18 @@
 
 { config, pkgs, ... }:
 
+#android app developement
+let android_developer_packages = with pkgs; [
+  android-studio
+];
+
+general_packages = with pkgs; [
+    git
+    virtualbox
+];
+
+in
+
 {
   imports =
     [ # Include the results of the hardware scan.
@@ -98,10 +110,7 @@
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-  environment.systemPackages = with pkgs; [
-    git
-    virtualbox
-  ];
+  environment.systemPackages =  android_developer_packages ++ general_packages;
 
   #enable virtualbox guest additions
   virtualisation.virtualbox.guest.enable = true;
@@ -119,6 +128,9 @@
 
   # Enable the OpenSSH daemon.
   # services.openssh.enable = true;
+
+  #allow unfree software like Android studio
+   nixpkgs.config.allowUnfree = true;
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
