@@ -9,6 +9,10 @@ let android_developer_packages = with pkgs; [
   android-studio
 ];
 
+dynamic_analysis_tools = with pkgs; [
+    frida-tools
+];
+
 general_packages = with pkgs; [
     git
     virtualbox
@@ -110,7 +114,7 @@ in
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-  environment.systemPackages =  android_developer_packages ++ general_packages;
+  environment.systemPackages =  android_developer_packages ++ general_packages ++ dynamic_analysis_tools;
 
   #enable virtualbox guest additions
   virtualisation.virtualbox.guest.enable = true;
