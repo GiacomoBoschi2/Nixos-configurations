@@ -7,6 +7,7 @@
 #android app developement
 let android_developer_packages = with pkgs; [
   android-studio
+  android-tools
 ];
 
 dynamic_analysis_tools = with pkgs; [
